@@ -1,0 +1,15 @@
+*.iml
+/*.iml
+/app/*.iml
+/app/*.apk
+/app/google-services.json
+.idea/*
+!.idea/codeStyleSettings.xml
+
+.gradle/*
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
