@@ -15,6 +15,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public double stackTwo = 0;
     public boolean isResult = false;
     public String viewedText = "";
+    public enum operator {
+        ADD,SUB,DIV,MUL
+    }
+    public operator lastOperator;
     TextView textView;
 
     @Override
@@ -106,6 +110,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "1");
                 }
+                viewedText = viewedText + "1";
+                textView.setText(viewedText);
                 break;
             case R.id.button_02:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -147,6 +153,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "2");
                 }
+                viewedText = viewedText + "2";
+                textView.setText(viewedText);
                 break;
             case R.id.button_03:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -188,6 +196,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "3");
                 }
+                viewedText = viewedText + "3";
+                textView.setText(viewedText);
                 break;
             case R.id.button_04:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -229,6 +239,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "4");
                 }
+                viewedText = viewedText + "4";
+                textView.setText(viewedText);
                 break;
             case R.id.button_05:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -270,6 +282,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "5");
                 }
+                viewedText = viewedText + "5";
+                textView.setText(viewedText);
                 break;
             case R.id.button_06:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -311,6 +325,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "6");
                 }
+                viewedText = viewedText + "6";
+                textView.setText(viewedText);
                 break;
             case R.id.button_07:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -352,6 +368,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "7");
                 }
+                viewedText = viewedText + "7";
+                textView.setText(viewedText);
                 break;
             case R.id.button_08:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -393,6 +411,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "8");
                 }
+                viewedText = viewedText + "8";
+                textView.setText(viewedText);
                 break;
             case R.id.button_09:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -434,6 +454,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "9");
                 }
+                viewedText = viewedText + "9";
+                textView.setText(viewedText);
                 break;
             case R.id.button_00:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -475,17 +497,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     stack.push(stack.pop() + "0");
                 }
+                viewedText = viewedText + "0";
+                textView.setText(viewedText);
                 break;
+            //iwas stimmt hier nicht
             case R.id.button_div:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
                         || stack.peek().equals("+")) {
                     stack.pop();
+                    stack.push("/");
+                    viewedText = viewedText.substring(0, viewedText.length() - 1);
                     //checks if there is a dot and removes the dot if that is the case
                 } else if (stack.peek().substring(stack.peek().length() - 1).equals(".")) {
                     stack.push(stack.pop().substring(0, stack.peek().length() - 1));
+                    viewedText = viewedText.substring(0, viewedText.length() - 1);
                 }
-                stack.push("/");
                 isResult = true;
+                textView.setText(viewedText);
                 break;
             case R.id.button_mul:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -497,6 +525,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 stack.push("*");
                 isResult = true;
+                viewedText = viewedText + "*";
+                textView.setText(viewedText);
                 break;
             case R.id.button_sub:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -508,6 +538,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 stack.push("-");
                 isResult = true;
+                viewedText = viewedText + "-";
+                textView.setText(viewedText);
                 break;
             case R.id.button_add:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
@@ -519,6 +551,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 stack.push("+");
                 isResult = true;
+                viewedText = viewedText + "+";
+                textView.setText(viewedText);
                 break;
             case R.id.button_clear:
                 while (!stack.empty()) {
@@ -526,27 +560,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 stack.push("0");
                 viewedText = "";
-                isResult = true;
+                textView.setText(viewedText);
                 break;
             case R.id.button_clearEntry:
-                //hier müssen noch sachen gemacht werden
                 stack.pop();
                 if (stack.isEmpty()) {
                     stack.push("0");
+                    viewedText = "";
                 }
-                viewedText = "";
-                isResult = true;
+                viewedText = viewedText.substring(0, viewedText.indexOf("+") + 1);
+                textView.setText(viewedText);
                 break;
             case R.id.button_dot:
                 if (stack.peek().equals("/") || stack.peek().equals("*") || stack.peek().equals("-")
                         || stack.peek().equals("+")) {
                     stack.push("0.");
                     //checks if there is a dot at the end of the String or somewhere in the String, and if that's the case do nothing
-                } else if(stack.peek().substring(stack.peek().length() - 1).equals(".") || stack.peek().indexOf('.') > -1) {
+                } else if (stack.peek().substring(stack.peek().length() - 1).equals(".") || stack.peek().indexOf('.') > -1) {
                     //error
                 } else {
                     stack.push(stack.pop() + ".");
                 }
+                viewedText = viewedText + ".";
+                textView.setText(viewedText);
                 break;
 
             case R.id.button_result:
@@ -558,9 +594,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             stack.push(stack.peek().replace(".0", ""));
         }
 
-        //in den code
-        //viewedText = viewedText + stack.peek();
-        //textView.setText(stack.peek());
     }
 
 }
