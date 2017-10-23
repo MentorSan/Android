@@ -306,49 +306,104 @@ public class MainActivityV3 extends AppCompatActivity implements View.OnClickLis
                 if (isResult) {
                     isResult = false;
                 }
-
-                lastOperator = Operator.SUB;
-                if (viewedText.contains("-")) {
-                    viewedText = viewedText + "";
-                }else {
+                if (viewedText.contains("/") || viewedText.contains("*")
+                        || viewedText.contains("-") || viewedText.contains("+")) {
+                    switch (lastOperator) {
+                        case DIV:
+                            viewedText = viewedText.replace("/", "-");
+                            break;
+                        case MUL:
+                            viewedText = viewedText.replace("*", "-");
+                            break;
+                        case SUB:
+                            viewedText = viewedText + "";
+                            break;
+                        case ADD:
+                            viewedText = viewedText.replace("+", "-");
+                            break;
+                    }
+                } else {
                     viewedText = viewedText + "-";
                 }
+                lastOperator = Operator.SUB;
                 break;
 
             case R.id.button_add:
                 if (isResult) {
                     isResult = false;
                 }
-                lastOperator = Operator.ADD;
-                if (viewedText.contains("+")) {
-                    viewedText = viewedText + "";
-                }else {
+                if (viewedText.contains("/") || viewedText.contains("*")
+                        || viewedText.contains("-") || viewedText.contains("+")) {
+                    switch (lastOperator) {
+                        case DIV:
+                            viewedText = viewedText.replace("/", "+");
+                            break;
+                        case MUL:
+                            viewedText = viewedText.replace("*", "+");
+                            break;
+                        case SUB:
+                            viewedText = viewedText.replace("-", "+");
+                            break;
+                        case ADD:
+                            viewedText = viewedText + "";
+                            break;
+                    }
+                } else {
                     viewedText = viewedText + "+";
                 }
+                lastOperator = Operator.ADD;
                 break;
 
             case R.id.button_div:
                 if (isResult) {
                     isResult = false;
                 }
-                lastOperator = Operator.DIV;
-                if (viewedText.contains("/")) {
-                    viewedText = viewedText + "";
-                }else {
+                if (viewedText.contains("/") || viewedText.contains("*")
+                        || viewedText.contains("-") || viewedText.contains("+")) {
+                    switch (lastOperator) {
+                        case DIV:
+                            viewedText = viewedText + "";
+                            break;
+                        case MUL:
+                            viewedText = viewedText.replace("*", "/");
+                            break;
+                        case SUB:
+                            viewedText = viewedText.replace("-", "/");
+                            break;
+                        case ADD:
+                            viewedText = viewedText.replace("+", "/");
+                            break;
+                    }
+                } else {
                     viewedText = viewedText + "/";
                 }
+                lastOperator = Operator.DIV;
                 break;
 
             case R.id.button_mul:
                 if (isResult) {
                     isResult = false;
                 }
-                lastOperator = Operator.MUL;
-                if (viewedText.contains("*")) {
-                    viewedText = viewedText + "";
-                }else {
+                if (viewedText.contains("/") || viewedText.contains("*")
+                        || viewedText.contains("-") || viewedText.contains("+")) {
+                    switch (lastOperator) {
+                        case DIV:
+                            viewedText = viewedText.replace("/", "*");
+                            break;
+                        case MUL:
+                            viewedText = viewedText + "";
+                            break;
+                        case SUB:
+                            viewedText = viewedText.replace("-", "*");
+                            break;
+                        case ADD:
+                            viewedText = viewedText.replace("+", "*");
+                            break;
+                    }
+                } else {
                     viewedText = viewedText + "*";
                 }
+                lastOperator = Operator.MUL;
                 break;
 
             case R.id.button_clear:

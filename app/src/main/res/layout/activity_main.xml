@@ -4,29 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:paddingBottom="16dp"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp">
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:background="@color/colorBackground">
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="500dp"
         android:columnCount="4"
         android:rowCount="6"
-        tools:ignore="UselessParent">
+        tools:ignore="UselessParent"
+        android:background="@color/colorBackground">
 
         <TextView
             android:id="@+id/text_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="4dp"
             android:layout_columnSpan="4"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:layout_rowWeight="1"
             android:gravity="end|bottom"
             android:text="@string/button_00"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:background="@color/colorText"/>
 
         <View
             android:layout_width="0dp"
